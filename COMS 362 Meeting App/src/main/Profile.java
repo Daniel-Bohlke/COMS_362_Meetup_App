@@ -1,5 +1,7 @@
 package main;
 
+import main.utility.AppUtilities;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +12,45 @@ import java.util.Scanner;
 
 public class Profile {
 
-	String myName;
-	BufferedImage profilePicture;
-	
-	public Profile(){
-		
+	private String myName;
+	private BufferedImage profilePicture;
+	private String genderIdentity;
+	private String aboutMe;
+
+	public static Profile setupProfile(){
+		Profile p = new Profile();
+
+
+		p.setAboutMe(AppUtilities.collectInput("Tell us about yourself:"));
+		p.setGenderIdentity(AppUtilities.collectInput("How do you identify your gender?"));
+
+		/*
+		If you guys like this, you can convert your use cases to follow this structure
+		for setting fields
+			-Just a suggestion
+		 */
+
+
+		return p;
 	}
+
+
+	public void setAboutMe(String aboutMe){
+		this.aboutMe = aboutMe;
+	}
+
+	public String getAboutMe(){
+		return aboutMe;
+	}
+
+	public void setGenderIdentity(String genderIdentity){
+		this.genderIdentity = genderIdentity;
+	}
+
+	public String getGenderIdentity(){
+		return genderIdentity;
+	}
+
 
 	public void setName() {
 		Scanner input = new Scanner(System.in);
