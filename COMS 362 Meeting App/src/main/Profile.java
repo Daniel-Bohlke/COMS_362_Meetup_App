@@ -1,5 +1,7 @@
 package main;
 
+import main.utility.AppUtilities;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +12,49 @@ import java.util.Scanner;
 
 public class Profile {
 
-	BufferedImage profilePicture;
-	
-	String myName;
+	private String myName;
+	private BufferedImage profilePicture;
+	private String genderIdentity;
+	private String aboutMe;
 	private String spiritAnimal;
-	
-	public Profile(){
-		
+
+	public static void main(String[] args) {
+		Profile p = setupProfile();
+
+		System.out.println("All done, " + p.getName() + "!");
+		System.out.println(p.aboutMe);
+		System.out.println(p.genderIdentity);
+	}
+
+	public static Profile setupProfile() {
+		Profile p = new Profile();
+
+		p.setAboutMe(AppUtilities.collectInput("Tell us about yourself:"));
+		p.setGenderIdentity(AppUtilities.collectInput("How do you identify your gender?"));
+
+		/*
+		If you guys like this, you can convert your use cases to follow this structure
+		for setting fields
+			-Just a suggestion
+		 */
+
+		return p;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setGenderIdentity(String genderIdentity) {
+		this.genderIdentity = genderIdentity;
+	}
+
+	public String getGenderIdentity() {
+		return genderIdentity;
 	}
 
 	public void setName() {
@@ -27,6 +65,10 @@ public class Profile {
 		String response2 = input.next();
 		this.myName = response + " " + response2;
 		System.out.println("Great! Your name will appear as: " + this.myName + "!\n");
+	}
+
+	public String getName() {
+		return myName;
 	}
 
 	public void setProfilePicture() {
