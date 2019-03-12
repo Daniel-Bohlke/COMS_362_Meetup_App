@@ -17,6 +17,13 @@ public class Profile {
 	private String genderIdentity;
 	private String aboutMe;
 
+	public static void main(String[] args){
+		Profile p = setupProfile();
+
+		System.out.println("All done, "+p.getName()+"!");
+		System.out.println(p.aboutMe);
+		System.out.println(p.genderIdentity);
+	}
 	public static Profile setupProfile(){
 		Profile p = new Profile();
 
@@ -60,6 +67,10 @@ public class Profile {
 		String response2 = input.next();
 		this.myName = response + " " + response2;
 		System.out.println("Great! Your name will appear as: " + this.myName + "!\n");
+	}
+
+	public String getName(){
+		return myName;
 	}
 
 	public void setProfilePicture() {
