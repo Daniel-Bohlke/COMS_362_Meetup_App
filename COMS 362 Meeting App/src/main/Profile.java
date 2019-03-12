@@ -10,8 +10,10 @@ import java.util.Scanner;
 
 public class Profile {
 
-	String myName;
 	BufferedImage profilePicture;
+	
+	String myName;
+	private String spiritAnimal;
 	
 	public Profile(){
 		
@@ -31,39 +33,57 @@ public class Profile {
 		System.out.println("Is the picture saved in the file structure? (y/n)");
 		Scanner input = new Scanner(System.in);
 		String response = input.next();
-		boolean upload_complete = false;
-		while(!upload_complete){
-			if(response.equals("y")){
-				System.out.println("Good! Now please enter the name of your picture file. (include .jpg, .png, etc.)");
-				response = input.next();
-				try{
-					///////
-					
-					BufferedImage picture = ImageIO.read(new File(response));
-					this.profilePicture = picture;
-					/*
-					 * This section will need to be changed once the server is set up to something more like:
-					 * try {
-					 * 		URL url = new URL(getCodeBase(), "pictures/sobble_is_best.png");
-					 * 		img = ImageIO.read(url);
-					 * }catch(IOException e){
-					 * 		System.out.println("The picture you specified seems to be unavailable, please try again");
-					 * }
-					 */
-					///////
-					System.out.println("Your profile picture was added successfuly! The following picture will be displayed.");
-					JFrame frame = new JFrame();
-			        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			        frame.getContentPane().setLayout(new GridLayout(1, 1));
-					ImagePanel panel = new ImagePanel(this.profilePicture);
-			        frame.getContentPane().add(panel);
-			        frame.pack();
-			        frame.setVisible(true);
-				}catch(IOException e){
-					System.out.println("The file name you specified was invalid, please try again");
-				}
+
+		if(response.equals("y")) {
+			System.out.println("Good! Now please enter the name of your picture file. (include .jpg, .png, etc.)");
+			response = input.next();
+
+			try {
+				this.profilePicture = ImageIO.read(new File(response));
+
+				/*
+				 * This section will need to be changed once the server is set up to something more like:
+				 * try {
+				 * 		URL url = new URL(getCodeBase(), "pictures/sobble_is_best.png");
+				 * 		img = ImageIO.read(url);
+				 * }catch(IOException e){
+				 * 		System.out.println("The picture you specified seems to be unavailable, please try again");
+				 * }
+				 */
+
+				System.out.println("Your profile picture was added successfuly! The following picture will be displayed.");
+				JFrame frame = new JFrame();
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.getContentPane().setLayout(new GridLayout(1, 1));
+				ImagePanel panel = new ImagePanel(this.profilePicture);
+				frame.getContentPane().add(panel);
+				frame.pack();
+				frame.setVisible(true);
+			}
+			catch(IOException e) {
+				System.out.println("The file name you specified was invalid, please try again");
 			}
 		}
+	}
+
+	/**
+	 * Sets the Spirit Animal section of the profile.
+	 *
+	 * @param spiritAnimal
+	 * 		The spirit animal to be added.
+	 * 		This can be anything, including an empty string
+	 */
+	public void setSpiritAnimal(String spiritAnimal) {
+		System.out.println("You have entered your spirit animal as: " + (spiritAnimal.trim().equals("") ? "<blank>" : spiritAnimal));
+
+		this.spiritAnimal = spiritAnimal;
+	}
+
+	/**
+	 * Get the spirit animal section of the profile.
+	 */
+	public String getSpiritAnimal() {
+		return this.spiritAnimal;
 	}
 
 	public void removeName() {
