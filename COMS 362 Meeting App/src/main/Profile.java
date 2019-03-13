@@ -17,6 +17,8 @@ public class Profile {
 	private String genderIdentity;
 	private String aboutMe;
 	private String spiritAnimal;
+	private String myMajor;
+	private String myZodiacSign;
 
 	public static void main(String[] args) {
 		Profile p = setupProfile();
@@ -127,6 +129,22 @@ public class Profile {
 	 */
 	public String getSpiritAnimal() {
 		return this.spiritAnimal;
+	}
+	
+	public void setMajor(String myMajor) {
+		this.myMajor = myMajor;
+	}
+	
+	public String getMajor() {
+		return myMajor;
+	}
+	
+	public void setZodiacSign(String myZodiacSign) {
+		this.myZodiacSign = myZodiacSign;
+	}
+	
+	public String getZodiacSign() {
+		return myZodiacSign;
 	}
 
 	public void removeName() {
